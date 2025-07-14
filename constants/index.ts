@@ -17,8 +17,8 @@ export const subjectOptions = [
 ];
 
 export const speakingStyleOptions = [
-  { label: "Formal", value: "Formal" },
-  { label: "Casual", value: "Casual" },
+  { label: "formal", value: "formal" },
+  { label: "casual", value: "casual" },
 ];
 
 export const subjectsColors = {
@@ -33,4 +33,10 @@ export const subjectsColors = {
   Chemistry: "#D7FFE5",
   Biology: "#D7FFE5",
   English: "#D7FFE5",
+};
+
+
+export const voices = {
+  male: { casual: "2BJW5coyhAzSr8STdHbE", formal: "c6SfcYrb2t09NHXiT80T" },
+  female: { casual: "ZIlrSGI4jZqobxRKprJz", formal: "sarah" },
 };

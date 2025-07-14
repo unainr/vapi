@@ -29,9 +29,27 @@ export interface SearchParams {
 export interface CompanionCardProps {
 	id: string;
 	name: string | null;
-	subject: string |any;
+	subject: string | null;
 	teaching_subject: string | null;
 	duration: number | null;
 	speaking_style: string | null;
-	color?:string ;
+	color?: string;
+}
+
+
+export interface CompanionProps {
+	companionId: string;
+	name: string | null;
+	subject: string | null;
+	teaching_subject: string | null;
+	voice_type: string | null;
+	speaking_style: string | null;
+	userName: string;
+	userImage: string;
+}
+
+
+export interface SavedMessage {
+  role: "user" | "system" | "assistant";
+  content: string;
 }
