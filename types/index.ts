@@ -34,6 +34,7 @@ export interface CompanionCardProps {
 	duration: number | null;
 	speaking_style: string | null;
 	color?: string;
+	
 }
 
 

@@ -44,8 +44,8 @@ export default function MainHeader() {
 					<Link href="/learning-ai" className="text-sm font-medium text-gray-500 dark:text-white hover:text-primary">
 						Learning
 					</Link>
-					<Link href="#testimonials" className="text-sm font-medium text-gray-500 dark:text-white hover:text-primary">
-						Testimonials
+					<Link href="/journey" className="text-sm font-medium text-gray-500 dark:text-white hover:text-primary">
+						My Journey
 					</Link>
 					<Link href="/pricing" className="text-sm font-medium text-gray-500 dark:text-white hover:text-primary">
 						Pricing

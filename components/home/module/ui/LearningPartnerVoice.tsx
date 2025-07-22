@@ -8,6 +8,7 @@ import soundwaves from "@/constants/soundwaves.json";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Mic, MicOff } from "lucide-react";
+import { companionSessionHistory } from "@/lib/actions/create.learning";
 enum CallStatus {
 	INACTIVE = "INACTIVE",
 	CONNECTION = "CONNECTION",
@@ -43,10 +44,12 @@ const [messages, setMessages] = useState<SavedMessage[]>([]);
 	useEffect(() => {
 		const onCallStart = () => setCallStatus(CallStatus.ACTIVE);
 
-		const onCallEnd = () => setCallStatus(CallStatus.FINISHED);
+		const onCallEnd = () => {setCallStatus(CallStatus.FINISHED)
+        companionSessionHistory(companionId)
+            
+        };
 
 		const onMessage = (message:Message) => {
-			console.log('messagege',message);
 			if(message.type === 'transcript' && message.transcriptType   === 'final'){
 				const newMessage = {role:message.role,content:message.transcript
 

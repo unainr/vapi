@@ -1,10 +1,11 @@
 "use server";
 
 import { db } from "@/drizzle/db";
-import { learning_partner } from "@/drizzle/schema";
+import { learning_partner, session_history } from "@/drizzle/schema";
 import { getLearningPartner, LearningPartner } from "@/types";
 import { auth } from "@clerk/nextjs/server";
-import { eq, sql } from "drizzle-orm";
+import { desc, eq, sql } from "drizzle-orm";
+
 export const createLearningPartner = async (params: LearningPartner) => {
 	const { userId: author } = await auth();
 	try {
@@ -82,3 +83,113 @@ try {
 
 
  }
+
+
+
+ export const companionSessionHistory = async(companionId:string)=>{
+
+	const {userId} = await auth()
+	try {
+		const result = await db.insert(session_history).values({
+			learning_partner_id:companionId,
+			user_id:userId
+		}).returning()
+		
+    if (!result || result.length === 0) {
+      throw new Error("Failed to create session history");
+    }
+
+			return {success:true,data:result[0]}
+	} catch (error:any) {
+		return {success:false,error:error.message || "Unknown error"}
+	}
+}
+
+// fetch Session History
+
+
+export const getSessionHistory = async (limit = 10) => {
+  try {
+    const data = await db
+      .select({
+        session: session_history,
+        partner: learning_partner,
+      })
+      .from(session_history)
+      .leftJoin(
+        learning_partner,
+        eq(session_history.learning_partner_id, learning_partner.id)
+      )
+      .orderBy(desc(session_history.created_at))
+      .limit(limit);
+
+    if (!data) throw new Error("No session history found");
+
+    return {
+      success: true,
+      data: data.map(({ partner }) => partner),
+      full: data,
+    };
+  } catch (error: any) {
+    return {
+      success: false,
+      error: error.message || "Unknown error occurred",
+    };
+  }
+};
+
+export const getUsersSessions = async (userId: string,limit= 10)=>{
+try {
+	const data = await db.select().from(session_history).where(eq(session_history.user_id, userId)).orderBy(desc(session_history.created_at)).limit(limit)
+	if(!data) throw new Error("Failed to fetch session history")
+	return {success:true,data}
+} catch (error:any) {
+	return {success:false,error:error.message || "Unknown error"}
+}
+}
+
+
+
+
+
+ export const getUserCompanion = async(userId:string)=>{
+	try {
+		const data = await db.select().from(learning_partner).where(eq(learning_partner.author, userId));
+		 if (!data || data.length === 0) {
+		  throw new Error("Companion not found");
+		}
+		return {success:true,data}
+	} catch (error:any) {
+		return {success:false,error:error.message || "Unknown error"}
+	}
+ }
+
+
+
+ export const newCompanionPermission = async ()=>{
+	const {userId , has} = await auth();
+	let limit = 0
+ try {
+	if(has({plan:'pro'})){
+		return true;
+	}else if(has({feature:'3_active_session'})){
+		limit = 3;
+	}else if (has({feature:'10_active_session'})){
+		limit = 10;
+	}
+	if (!userId) throw new Error("User ID is required");
+	const [{ count: totalCount }] = await db
+  .select({ count: sql<number>`COUNT(*)` })
+  .from(learning_partner)
+  .where(eq(learning_partner.author, userId));
+
+if (totalCount >= limit) {
+  return false;
+}
+		else{
+			return true;
+		}
+ } catch (error:any) {
+	throw new Error(error.message || "Failed to check companion creation permission");
+ }
+}
