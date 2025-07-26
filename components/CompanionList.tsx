@@ -1,4 +1,4 @@
-"use client";
+
 
 import { getSubjectColor } from "@/lib/utils";
 import Link from "next/link";
@@ -65,3 +65,5 @@ const CompanionList = ({
 };
 
 export default CompanionList;
+export const revalidate = 0;
+
