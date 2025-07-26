@@ -65,5 +65,5 @@ const CompanionList = ({
 };
 
 export default CompanionList;
-export const revalidate = 0;
+// export const revalidate = 0;
 

@@ -28,7 +28,7 @@ const CreateCompanion = async () => {
     You’ve reached the limit of free companions. Upgrade your plan to unlock more learning power and create additional companions.
   </p>
   <Link href="/pricing" >
-  <Button className="w-full" variant="default" size="lg">
+  <Button className="w-ful bg-[#845fff] hover:bg-[#845fff]/90  text-whitel"  size="lg">
     Upgrade Plan
   </Button>
   </Link>
