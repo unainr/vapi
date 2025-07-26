@@ -29,7 +29,7 @@ import {
 import { formSchema } from "@/lib/validation";
 import { createLearningPartner } from "@/lib/actions/create.learning";
 import { useState } from "react";
-import { Circle, SplineIcon } from "lucide-react";
+import { Circle, Loader, SplineIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 const FormBuild = () => {
@@ -68,136 +68,155 @@ const FormBuild = () => {
 	};
 
 	return (
-		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 w-full">
-				{/* Name */}
-				<FormField
-					control={form.control}
-					name="name"
-					render={({ field }) => (
-						<FormItem>
-							<FormLabel>Companion Name </FormLabel>
-							<FormControl>
-								<Input placeholder="Enter name" {...field} />
-							</FormControl>
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
+	<Form {...form}>
+  <form
+    onSubmit={form.handleSubmit(onSubmit)}
+    className="space-y-8 w-full bg-background p-6 rounded-xl shadow-sm border"
+  >
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {/* Companion Name */}
+      <FormField
+        control={form.control}
+        name="name"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Companion Name</FormLabel>
+            <FormControl>
+              <Input
+                placeholder="Enter name"
+                {...field}
+                className="py-2.5 px-4 rounded-md border border-border focus:ring-2 focus:ring-primary transition-all"
+              />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
 
-				{/* Subject */}
-				<FormField
-					control={form.control}
-					name="subject"
-					render={({ field }) => (
-						<FormItem>
-							<FormLabel>Subject</FormLabel>
-							<Select value={field.value} onValueChange={field.onChange}>
-								<FormControl>
-									<SelectTrigger className="w-full">
-										<SelectValue placeholder="Select subject" />
-									</SelectTrigger>
-								</FormControl>
-								<SelectContent>
-									{subjectOptions.map((opt) => (
-										<SelectItem key={opt.value} value={opt.value}>
-											{opt.label}
-										</SelectItem>
-									))}
-								</SelectContent>
-							</Select>
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
+      {/* Subject */}
+      <FormField
+        control={form.control}
+        name="subject"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Subject</FormLabel>
+            <Select value={field.value} onValueChange={field.onChange}>
+              <FormControl>
+                <SelectTrigger className="py-2.5 px-4 w-full rounded-md border border-border focus:ring-2 focus:ring-primary transition-all">
+                  <SelectValue placeholder="Select subject" />
+                </SelectTrigger>
+              </FormControl>
+              <SelectContent>
+                {subjectOptions.map((opt) => (
+                  <SelectItem key={opt.value} value={opt.value}>
+                    {opt.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
 
-				{/* Teaching Subject */}
-				<FormField
-					control={form.control}
-					name="teaching_subject"
-					render={({ field }) => (
-						<FormItem>
-							<FormLabel>Teaching Subject</FormLabel>
-							<FormControl>
-								<Input placeholder="e.g., Algebra" {...field} />
-							</FormControl>
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
+      {/* Teaching Subject */}
+      <FormField
+        control={form.control}
+        name="teaching_subject"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>What Should The Companion Help With?</FormLabel>
+            <FormControl>
+              <Input
+                placeholder="e.g., Algebra"
+                {...field}
+                className="py-2.5 px-4  rounded-md border border-border focus:ring-2 focus:ring-primary transition-all"
+              />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
 
-				{/* Voice Type */}
-				<FormField
-					control={form.control}
-					name="voice_type"
-					render={({ field }) => (
-						<FormItem>
-							<FormLabel>Voice Type</FormLabel>
-							<Select value={field.value} onValueChange={field.onChange}>
-								<FormControl>
-									<SelectTrigger className="w-full">
-										<SelectValue placeholder="Select voice type" />
-									</SelectTrigger>
-								</FormControl>
-								<SelectContent>
-									{voiceTypeOptions.map((opt) => (
-										<SelectItem key={opt.value} value={opt.value}>
-											{opt.label}
-										</SelectItem>
-									))}
-								</SelectContent>
-							</Select>
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
+      {/* Voice Type */}
+      <FormField
+        control={form.control}
+        name="voice_type"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Voice Type</FormLabel>
+            <Select value={field.value} onValueChange={field.onChange}>
+              <FormControl>
+                <SelectTrigger className="py-2.5 w-full px-4 rounded-md border border-border focus:ring-2 focus:ring-primary transition-all">
+                  <SelectValue placeholder="Select voice type" />
+                </SelectTrigger>
+              </FormControl>
+              <SelectContent>
+                {voiceTypeOptions.map((opt) => (
+                  <SelectItem key={opt.value} value={opt.value}>
+                    {opt.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
 
-				{/* Speaking Style */}
-				<FormField
-					control={form.control}
-					name="speaking_style"
-					render={({ field }) => (
-						<FormItem>
-							<FormLabel>Speaking Style</FormLabel>
-							<Select value={field.value} onValueChange={field.onChange}>
-								<FormControl>
-									<SelectTrigger className="w-full">
-										<SelectValue placeholder="Select style" />
-									</SelectTrigger>
-								</FormControl>
-								<SelectContent>
-									{speakingStyleOptions.map((opt) => (
-										<SelectItem key={opt.value} value={opt.value}>
-											{opt.label}
-										</SelectItem>
-									))}
-								</SelectContent>
-							</Select>
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
+      {/* Speaking Style */}
+      <FormField
+        control={form.control}
+        name="speaking_style"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Speaking Style</FormLabel>
+            <Select value={field.value} onValueChange={field.onChange}>
+              <FormControl>
+                <SelectTrigger className="py-2.5 w-full px-4 rounded-md border border-border focus:ring-2 focus:ring-primary transition-all">
+                  <SelectValue placeholder="Select style" />
+                </SelectTrigger>
+              </FormControl>
+              <SelectContent>
+                {speakingStyleOptions.map((opt) => (
+                  <SelectItem key={opt.value} value={opt.value}>
+                    {opt.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
 
-				{/* Duration */}
-				<FormField
-					control={form.control}
-					name="duration"
-					render={({ field }) => (
-						<FormItem>
-							<FormLabel>Duration (in minutes)</FormLabel>
-							<FormControl>
-								<Input type="number" placeholder="e.g., 15" {...field} />
-							</FormControl>
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
+      {/* Duration */}
+      <FormField
+        control={form.control}
+        name="duration"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Duration (in minutes)</FormLabel>
+            <FormControl>
+              <Input
+                type="number"
+                placeholder="e.g., 15"
+                {...field}
+                className="py-2.5 px-4 rounded-md border border-border focus:ring-2 focus:ring-primary transition-all"
+              />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+    </div>
 
-				<Button type="submit" className="w-full">
-					{loading ? <Circle className="animate-spin w-4 h-4" /> : "Submit"}
-				</Button>
-			</form>
-		</Form>
+    <Button type="submit" disabled={loading} className="w-full text-base font-medium py-3 bg-[#845fff] hover:bg-[#845fff]/90  text-white">
+      {loading ? <Loader className="animate-spin w-4 h-4" /> : "Submit"}
+    </Button>
+  </form>
+</Form>
+
 	);
 };
 

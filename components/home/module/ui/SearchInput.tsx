@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { formUrlQuery, removeKeysFromUrlQuery } from "@jsmastery/utils";
+import { Search } from "lucide-react";
 const SearchInput = () => {
 	const [searchQuery, setSearchQuery] = useState("");
 	const pathname = usePathname();
@@ -34,14 +35,16 @@ const SearchInput = () => {
 	}, [searchQuery,router,searchParams,pathname]);
 
 	return (
-		<div className="relative  rounded-lg items-center flex gap-2 px-2 py-1 h-fit">
-			<Input
-				placeholder="Search"
-				className="outline-none  focus:ring-0 focus:ring-offset-0"
-				value={searchQuery}
-				onChange={(e) => setSearchQuery(e.target.value)}
-			/>
-		</div>
+		<div className="relative flex items-center gap-2 w-full rounded-xl border border-input bg-background px-4 py-2 shadow-sm">
+  <Search className="h-4 w-4 text-muted-foreground" />
+  <Input
+    placeholder="Search companions..."
+    className="border-none bg-transparent p-0 shadow-none focus-visible:ring-0 focus-visible:ring-offset-0 text-sm"
+    value={searchQuery}
+    onChange={(e) => setSearchQuery(e.target.value)}
+  />
+</div>
+
 	);
 };
 

@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { ModeToggle } from "../ui/mode-toggle";
+import Logo from "./Logo";
 
 export default function MainHeader() {
 	const [isScrolled, setIsScrolled] = React.useState(false);
@@ -24,30 +26,32 @@ export default function MainHeader() {
 				isScrolled ? "bg-background/60 backdrop-blur-md" : ""
 			}`}>
 			<div className="mx-auto max-w-screen-xl flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
-				<Link href="/" className="flex items-center space-x-2 shrink-0">
-					<span className="relative z-10 text-xl sm:text-2xl font-black tracking-tighter">
-						<span className="bg-gradient-to-r from-red-600 via-rose-500 to-orange-500 bg-clip-text text-transparent">
-							L
-						</span>
-						<span className="bg-gradient-to-r from-rose-500 via-red-500 to-rose-600 bg-clip-text text-transparent">
-							inkify
-						</span>
-						<span className="absolute -right-1.5 -top-1.5 h-2 w-2 animate-ping rounded-full bg-gradient-to-r from-red-500 to-orange-500 opacity-75" />
-						<span className="absolute -right-1.5 -top-1.5 h-2 w-2 rounded-full bg-gradient-to-r from-red-500 to-orange-500 shadow-md" />
-					</span>
-				</Link>
+				<Logo/>
 
 				<nav className="hidden md:flex items-center gap-4 lg:gap-6">
-					<Link href="/" className="text-sm font-medium text-gray-500 dark:text-white hover:text-primary">
+					<Link
+						href="/"
+						className="text-sm font-medium  hover:text-primary">
 						Home
 					</Link>
-					<Link href="/learning-ai" className="text-sm font-medium text-gray-500 dark:text-white hover:text-primary">
+					<Link
+						href="/create-companion"
+						className="text-sm font-medium  hover:text-primary">
+						Create Companion
+					</Link>
+					<Link
+						href="/learning-ai"
+						className="text-sm font-medium  hover:text-primary">
 						Learning
 					</Link>
-					<Link href="/journey" className="text-sm font-medium text-gray-500 dark:text-white hover:text-primary">
+					<Link
+						href="/journey"
+						className="text-sm font-medium  hover:text-primary">
 						My Journey
 					</Link>
-					<Link href="/pricing" className="text-sm font-medium text-gray-500 dark:text-white hover:text-primary">
+					<Link
+						href="/pricing"
+						className="text-sm font-medium  hover:text-primary">
 						Pricing
 					</Link>
 				</nav>
@@ -57,10 +61,11 @@ export default function MainHeader() {
 						<UserButton />
 					</SignedIn>
 					<SignedOut>
-						<Button variant={"outline"} asChild className="rounded-lg">
+						<Button  asChild className="rounded-lg bg-[#845fff] hover:bg-[#845fff]/90  text-white">
 							<Link href="/sign-in">Get Started</Link>
 						</Button>
 					</SignedOut>
+					<ModeToggle />
 				</div>
 
 				{/* Mobile Menu Trigger */}
@@ -74,7 +79,7 @@ export default function MainHeader() {
 						<SheetContent side="right" className="w-[250px] sm:w-[300px]">
 							<nav className="flex flex-col gap-4 mt-8 items-center">
 								<Link href="/" className="text-sm font-medium">
-								Home
+									Home
 								</Link>
 								<Link href="/learning-ai" className="text-sm font-medium">
 									Learning
@@ -89,7 +94,10 @@ export default function MainHeader() {
 									<UserButton />
 								</SignedIn>
 								<SignedOut>
-									<Button variant={'outline'} asChild className="rounded-lg w-full text-xs">
+									<Button
+										variant={"outline"}
+										asChild
+										className="rounded-lg w-full text-xs">
 										<Link href="/sign-in">Login</Link>
 									</Button>
 								</SignedOut>

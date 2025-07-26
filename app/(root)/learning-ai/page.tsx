@@ -14,12 +14,12 @@ const Learning = async ({ searchParams }: SearchParams) => {
 		: "";
 	const companions = await fetchLearningPartner({ subject, teaching_subject });
 	return (
-		<main className="container mx-auto px-4 py-8 md:py-12 lg:py-16">
+		<main className="container mx-auto px-4 py-8  my-20">
 			<section className="flex flex-col">
 				{/* Header with title and description */}
 				<div className="mb-8 text-center md:mb-12">
 					<h1 className="mb-3 text-3xl font-bold tracking-tight text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
-						Companion Library
+						Companion <span className='text-[#845fff]'>Library</span> 
 					</h1>
 					<p className="mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-300">
 						Discover AI companions to help you learn new subjects and skills at

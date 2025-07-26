@@ -39,18 +39,19 @@ const SubjectFilter = () => {
 
 	return (
 		<Select onValueChange={setSubject} value={subject}>
-			<SelectTrigger className="input capitalize">
-				<SelectValue placeholder="Subject" />
-			</SelectTrigger>
-			<SelectContent>
-				<SelectItem value="all">All subjects</SelectItem>
-				{subjectOptions.map(({ value, label }) => (
-					<SelectItem key={value} value={value} className="capitalize">
-						{label}
-					</SelectItem>
-				))}
-			</SelectContent>
-		</Select>
+  <SelectTrigger className="w-full md:w-52 capitalize rounded-xl border border-input bg-background px-4 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring focus:ring-offset-1">
+    <SelectValue placeholder="Subject" />
+  </SelectTrigger>
+  <SelectContent className="rounded-xl border border-border bg-popover text-sm shadow-lg">
+    <SelectItem value="all" className="capitalize">All Subjects</SelectItem>
+    {subjectOptions.map(({ value, label }) => (
+      <SelectItem key={value} value={value} className="capitalize">
+        {label}
+      </SelectItem>
+    ))}
+  </SelectContent>
+</Select>
+
 	);
 };
 

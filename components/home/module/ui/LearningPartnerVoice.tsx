@@ -102,11 +102,11 @@ const [messages, setMessages] = useState<SavedMessage[]>([]);
 		vapi.stop();
 	};
 	return (
-		<section className="flex flex-col gap-4 min-h-[100dvh] bg-gray-100 dark:bg-gray-900 rounded-xl overflow-hidden">
+		<section className="flex flex-col gap-4 min-h-[100dvh]  rounded-xl overflow-hidden">
     {/* Main Meeting Interface */}
      <section className="flex flex-col lg:flex-row flex-1 gap-4 p-4">
         {/* Left Side - Companion Video/Avatar */}
-        <div className="flex-1 bg-black  w-full rounded-xl relative overflow-hidden">
+        <div className="flex-1 bg-slate-100 dark:bg-gray-800/40  w-full rounded-xl relative overflow-hidden">
             <div className="w-full h-full flex items-center justify-center relative">
                 {/* Companion Avatar/Video Area */}
                 <div className="flex flex-col items-center justify-center h-full">
@@ -157,8 +157,8 @@ const [messages, setMessages] = useState<SavedMessage[]>([]);
                     </div>
                     
                     {/* Companion Name */}
-                    <h3 className="text-white text-xl font-semibold mb-2">{name}</h3>
-                    <p className="text-white/70 text-sm capitalize">{subject} • {teaching_subject}</p>
+                    <h3 className=" text-xl font-semibold mb-2">{name}</h3>
+                    <p className="italic text-sm capitalize">{subject} • {teaching_subject}</p>
                     
                     {/* Status Badge */}
                     <div className={cn(
@@ -178,7 +178,7 @@ const [messages, setMessages] = useState<SavedMessage[]>([]);
         {/* Right Side - User Panel */}
         <div className="w-80 flex flex-col gap-4">
             {/* User Video/Avatar Box */}
-            <div className="bg-gray-800 rounded-xl p-4 flex-shrink-0">
+            <div className="dark:bg-gray-800/40 bg-slate-100  shadow rounded-xl p-4 flex-shrink-0">
                 <div className="flex flex-col items-center">
                     <div className="relative mb-3">
                         <Image
@@ -186,14 +186,14 @@ const [messages, setMessages] = useState<SavedMessage[]>([]);
                             alt={userName}
                             width={120}
                             height={120}
-                            className="rounded-xl border-2 border-gray-600 shadow-lg"
+                            className="rounded-full border-2 border-gray-600 shadow-lg"
                         />
                         {/* User Status Indicator */}
                         <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-green-500 rounded-full border-3 border-gray-800 flex items-center justify-center">
-                            <div className="w-3 h-3 bg-white rounded-full" />
+                            <div className="w-3 h-3  rounded-full" />
                         </div>
                     </div>
-                    <h4 className="text-white font-medium text-lg">{userName}</h4>
+                    <h4 className=" font-medium text-lg">{userName}</h4>
                     <p className="text-gray-400 text-sm">You</p>
                 </div>
             </div>
@@ -204,7 +204,7 @@ const [messages, setMessages] = useState<SavedMessage[]>([]);
                     {/* Microphone Control */}
                     <Button 
                         className={cn(
-                            "w-full flex items-center justify-center gap-3 h-12 text-base font-medium transition-all duration-200",
+                            "w-full flex items-center cursor-pointer justify-center gap-3 h-12 text-base font-medium transition-all duration-200",
                             isMuted 
                                 ? "bg-red-500 hover:bg-red-600 text-white" 
                                 : "bg-gray-100 hover:bg-gray-200 text-gray-700 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-300"
@@ -219,10 +219,10 @@ const [messages, setMessages] = useState<SavedMessage[]>([]);
                     {/* Session Control Button */}
                     <button 
                         className={cn(
-                            'w-full flex items-center justify-center gap-3 h-14 rounded-lg font-semibold text-base transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-[1.02] active:scale-[0.98]',
+                            'w-full flex items-center justify-center cursor-pointer gap-3 h-14 rounded-lg font-semibold text-base transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-[1.02] active:scale-[0.98]',
                             callStatus === CallStatus.ACTIVE 
                                 ? 'bg-red-600 hover:bg-red-700 text-white' 
-                                : 'bg-blue-600 hover:bg-blue-700 text-white',
+                                : 'bg-[#845fff] hover:bg-[#845fff]/80 text-white',
                             callStatus === CallStatus.CONNECTION && 'animate-pulse cursor-not-allowed'
                         )} 
                         onClick={callStatus === CallStatus.ACTIVE ? handleDisconnect : handleConnect}
@@ -256,7 +256,7 @@ const [messages, setMessages] = useState<SavedMessage[]>([]);
 
         </div>
     </section>
-<section className="transcript bg-gradient-to-br from-slate-50 to-slate-100 dark:from-gray-800 dark:to-gray-900 border border-slate-200 dark:border-gray-700 rounded-xl p-6  overflow-y-auto relative shadow-inner">
+<section className="transcript bg-slate-100 dark:bg-gray-800/40  dark:to-gray-900 border border-slate-200 dark:border-gray-700 rounded-xl p-6  overflow-y-auto relative shadow-inner">
     {/* Header */}
     <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-200 dark:border-gray-700">
         <div className="flex items-center gap-3">
