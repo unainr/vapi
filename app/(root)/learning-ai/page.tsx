@@ -4,6 +4,7 @@ import SubjectFilter from "@/components/home/module/ui/SubjectFilter";
 import { fetchLearningPartner } from "@/lib/actions/create.learning";
 import { getSubjectColor } from "@/lib/utils";
 import { SearchParams } from "@/types";
+import { Metadata } from "next";
 import React from "react";
 
 const Learning = async ({ searchParams }: SearchParams) => {
@@ -81,3 +82,8 @@ const Learning = async ({ searchParams }: SearchParams) => {
 };
 
 export default Learning;
+
+export const metadata: Metadata = {
+  title: "Companion Library | Wisera - AI Learning Companion",
+  description: "Explore our AI-powered learning companions designed to enhance your study experience. Find the perfect companion to help you learn new subjects and skills at your own pace.",
+};

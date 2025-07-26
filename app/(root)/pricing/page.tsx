@@ -1,4 +1,5 @@
 import { PricingTable } from '@clerk/nextjs'
+import { Metadata } from 'next'
 import React from 'react'
 
 const Pricing = () => {
@@ -22,3 +23,9 @@ const Pricing = () => {
 }
 
 export default Pricing
+
+
+export const metadata: Metadata = {
+  title: "Pricing | Wisera AI Companion for Learning and Growth ",
+  description: "Choose a plan that fits your learning journey. Get access to more sessions, premium companions, and advanced features.",
+};

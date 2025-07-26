@@ -5,6 +5,7 @@ import { newCompanionPermission } from '@/lib/actions/create.learning';
 import FormBuild from '@/components/home/module/ui/Form';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { Metadata } from 'next';
 const CreateCompanion = async () => {
         const {userId} = await auth()
         if(!userId) redirect("/sign-in");
@@ -40,3 +41,9 @@ const CreateCompanion = async () => {
 }
 
 export default CreateCompanion
+
+
+export const metadata: Metadata = {
+  title: "Create Companion | Wisera - AI Learning Companion",
+  description: "Create your own AI learning companion to enhance your study experience. Customize its personality, voice, and teaching style to suit your needs.",
+};

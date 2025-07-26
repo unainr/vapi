@@ -12,6 +12,7 @@ import { getSubjectColor } from "@/lib/utils";
 import RecentSession from "@/components/home/module/ui/RecentSession";
 import { CompanionCardProps } from "@/types";
 import { Button } from "@/components/ui/button";
+import { Metadata } from "next";
 
 
 const page = async () => {
@@ -215,3 +216,8 @@ const page = async () => {
 };
 
 export default page;
+
+export const metadata: Metadata = {
+  title: "Your Journey | Wisera - AI Learning Companion",
+  description: "Track your learning journey with Wisera. View your companions, sessions, and achievements in one place.",
+};

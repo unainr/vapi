@@ -5,6 +5,7 @@ import { learning_partner, session_history } from "@/drizzle/schema";
 import { getLearningPartner, LearningPartner } from "@/types";
 import { auth } from "@clerk/nextjs/server";
 import { desc, eq, sql } from "drizzle-orm";
+import { revalidatePath } from "next/cache";
 
 export const createLearningPartner = async (params: LearningPartner) => {
 	const { userId: author } = await auth();
@@ -120,7 +121,7 @@ export const getSessionHistory = async (limit = 10) => {
       )
       .orderBy(desc(session_history.created_at))
       .limit(limit);
-
+	  revalidatePath("/");
     if (!data) throw new Error("No session history found");
 
     return {
@@ -188,6 +189,7 @@ export const newCompanionPermission = async () => {
 			.from(learning_partner)
 			.where(eq(learning_partner.author, userId));
 
+			revalidatePath("/create-companion");
 		if (totalCount >= limit) {
 			return false;
 		} else {
