@@ -41,7 +41,7 @@ const CreateCompanion = async () => {
 }
 
 export default CreateCompanion
-
+export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: "Create Companion | Wisera - AI Learning Companion",
