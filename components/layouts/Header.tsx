@@ -8,10 +8,13 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { ModeToggle } from "../ui/mode-toggle";
 import Logo from "./Logo";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 export default function MainHeader() {
 	const [isScrolled, setIsScrolled] = React.useState(false);
-
+	const pathname = usePathname();
+	const isActive = (path: string) => pathname === path;
 	React.useEffect(() => {
 		const handleScroll = () => {
 			setIsScrolled(window.scrollY > 0);
@@ -26,32 +29,53 @@ export default function MainHeader() {
 				isScrolled ? "bg-background/60 backdrop-blur-md" : ""
 			}`}>
 			<div className="mx-auto max-w-screen-xl flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
-				<Logo/>
+				<Logo />
 
-				<nav className="hidden md:flex items-center gap-4 lg:gap-6">
+				<nav className="hidden  md:flex items-center gap-4 lg:gap-6">
 					<Link
 						href="/"
-						className="text-sm font-medium  hover:text-primary">
+						className={cn(
+							"text-sm font-medium transition-colors ",
+							isActive("/") &&
+								"text-[#a288f9] hover:text-[#845fff] transition-all duration-100 ease-in font-semibold underline underline-offset-4"
+						)}>
 						Home
 					</Link>
+
 					<Link
 						href="/create-companion"
-						className="text-sm font-medium  hover:text-primary">
+						className={cn(
+							"text-sm font-medium transition-colors ",
+							isActive("/create-companion") &&
+								"text-[#a288f9] hover:text-[#845fff] transition-all duration-100 ease-in font-semibold underline underline-offset-4"
+						)}>
 						Create Companion
 					</Link>
 					<Link
 						href="/learning-ai"
-						className="text-sm font-medium  hover:text-primary">
+						className={cn(
+							"text-sm font-medium transition-colors ",
+							isActive("/learning-ai") &&
+								"text-[#a288f9] hover:text-[#845fff] transition-all duration-100 ease-in font-semibold underline underline-offset-4"
+						)}>
 						Learning
 					</Link>
 					<Link
 						href="/journey"
-						className="text-sm font-medium  hover:text-primary">
+						className={cn(
+							"text-sm font-medium transition-colors ",
+							isActive("/journey") &&
+								"text-[#a288f9] hover:text-[#845fff] transition-all duration-100 ease-in font-semibold underline underline-offset-4"
+						)}>
 						My Journey
 					</Link>
 					<Link
 						href="/pricing"
-						className="text-sm font-medium  hover:text-primary">
+						className={cn(
+							"text-sm font-medium transition-colors ",
+							isActive("/pricing") &&
+								"text-[#a288f9] hover:text-[#845fff] transition-all duration-100 ease-in font-semibold underline underline-offset-4"
+						)}>
 						Pricing
 					</Link>
 				</nav>
@@ -61,7 +85,9 @@ export default function MainHeader() {
 						<UserButton />
 					</SignedIn>
 					<SignedOut>
-						<Button  asChild className="rounded-lg bg-[#845fff] hover:bg-[#845fff]/90  text-white">
+						<Button
+							asChild
+							className="rounded-lg bg-[#845fff] hover:bg-[#845fff]/90  text-white">
 							<Link href="/sign-in">Get Started</Link>
 						</Button>
 					</SignedOut>
@@ -78,16 +104,40 @@ export default function MainHeader() {
 						</SheetTrigger>
 						<SheetContent side="right" className="w-[250px] sm:w-[300px]">
 							<nav className="flex flex-col gap-4 mt-8 items-center">
-								<Link href="/" className="text-sm font-medium">
+								<Link
+									href="/"
+									className={cn(
+										"text-sm font-medium transition-colors ",
+										isActive("/") &&
+											"text-[#a288f9] hover:text-[#845fff] transition-all duration-100 ease-in font-semibold underline underline-offset-4"
+									)}>
 									Home
 								</Link>
-								<Link href="/learning-ai" className="text-sm font-medium">
+								<Link
+									href="/learning-ai"
+									className={cn(
+										"text-sm font-medium transition-colors ",
+										isActive("/learning-ai") &&
+											"text-[#a288f9] hover:text-[#845fff] transition-all duration-100 ease-in font-semibold underline underline-offset-4"
+									)}>
 									Learning
 								</Link>
-								<Link href="#testimonials" className="text-sm font-medium">
-									Testimonials
+								<Link
+									href="/journey"
+									className={cn(
+										"text-sm font-medium transition-colors ",
+										isActive("/journey") &&
+											"text-[#a288f9] hover:text-[#845fff] transition-all duration-100 ease-in font-semibold underline underline-offset-4"
+									)}>
+									My Journey
 								</Link>
-								<Link href="/pricing" className="text-sm font-medium">
+								<Link
+									href="/pricing"
+									className={cn(
+										"text-sm font-medium transition-colors ",
+										isActive("/pricing") &&
+											"text-[#a288f9] hover:text-[#845fff] transition-all duration-100 ease-in font-semibold underline underline-offset-4"
+									)}>
 									Pricing
 								</Link>
 								<SignedIn>
@@ -95,10 +145,9 @@ export default function MainHeader() {
 								</SignedIn>
 								<SignedOut>
 									<Button
-										variant={"outline"}
 										asChild
-										className="rounded-lg w-full text-xs">
-										<Link href="/sign-in">Login</Link>
+										className="rounded-lg bg-[#845fff] hover:bg-[#845fff]/90  text-white">
+										<Link href="/sign-in">Get Started</Link>
 									</Button>
 								</SignedOut>
 							</nav>

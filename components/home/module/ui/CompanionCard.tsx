@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button'
 import { PointerHighlight } from '@/components/ui/pointer-highlight'
 import { CompanionCardProps } from '@/types'
 import Link from 'next/link'
@@ -71,7 +72,7 @@ const CompanionCard = ({id, name, subject, teaching_subject, duration, color}: C
       {/* Launch Button */}
       <div className="mt-auto">
         <Link href={`/learning-ai/${id}`} className="block w-full">
-          <button className="group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-gray-900 to-gray-800 px-6 py-3.5 font-medium text-white shadow-md transition-all duration-300 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 active:scale-[0.98] dark:from-indigo-600 dark:to-purple-600 dark:hover:from-indigo-500 dark:hover:to-purple-500 dark:focus:ring-indigo-500 sm:py-4">
+          <Button className="group relative w-full overflow-hidden cursor-pointer rounded-xl bg-gradient-to-r from-gray-900 to-gray-800 px-6 py-3.5 font-medium text-white shadow-md transition-all duration-300 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 active:scale-[0.98] dark:from-indigo-600 dark:to-purple-600 dark:hover:from-indigo-500 dark:hover:to-purple-500 dark:focus:ring-indigo-500 sm:py-4">
             <span className="relative z-10 flex items-center justify-center">
               <span className="mr-2">Launch Lesson</span>
               <svg className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 sm:h-5 sm:w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -79,7 +80,7 @@ const CompanionCard = ({id, name, subject, teaching_subject, duration, color}: C
               </svg>
             </span>
             <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-white/10 to-transparent transition-transform duration-700 group-hover:translate-x-full"></div>
-          </button>
+          </Button>
         </Link>
       </div>
     </div>
