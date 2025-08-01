@@ -6,10 +6,10 @@ import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-import { ModeToggle } from "../ui/mode-toggle";
 import Logo from "./Logo";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { ThemeToggleButton } from "../ui/mode-toggle";
 
 export default function MainHeader() {
 	const [isScrolled, setIsScrolled] = React.useState(false);
@@ -91,7 +91,8 @@ export default function MainHeader() {
 							<Link href="/sign-in">Get Started</Link>
 						</Button>
 					</SignedOut>
-					<ModeToggle />
+				    <ThemeToggleButton showLabel />
+
 				</div>
 
 				{/* Mobile Menu Trigger */}
