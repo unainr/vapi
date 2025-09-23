@@ -600,11 +600,11 @@ export default function WiseraHero() {
             transition={{ duration: 1, delay: 0.8 }}
             className="space-y-4 max-w-4xl"
           >
-            <h2 className={`text-2xl md:text-3xl lg:text-4xl font-light leading-tight `}>
+            <h2 className={`text-2xl text-white md:text-3xl lg:text-4xl font-light leading-tight `}>
               Create Your Perfect AI Companion
             </h2>
             
-            <p className={`text-lg md:text-xl leading-relaxed font-light `}>
+            <p className={`text-lg text-white md:text-xl leading-relaxed font-light `}>
               Experience natural voice conversations with intelligent AI companions tailored to your needs. 
               Build meaningful connections through advanced voice technology powered by VAPI.
             </p>

@@ -18,14 +18,56 @@ const Learning = async ({ searchParams }: SearchParams) => {
 		<main className="container mx-auto px-4 py-8  my-20">
 			<section className="flex flex-col">
 				{/* Header with title and description */}
-				<div className="mb-8 text-center md:mb-12">
-					<h1 className="mb-3 text-3xl font-bold tracking-tight text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
-						Companion <span className='text-[#845fff]'>Library</span> 
-					</h1>
-					<p className="mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-300">
-						Discover AI companions to help you learn new subjects and skills at
-						your own pace.
-					</p>
+				<div className="mb-12 text-center md:mb-16">
+				{/* Background decoration */}
+				<div className="absolute inset-0 -z-10 overflow-hidden">
+				<div className="absolute -top-40 -right-32 h-80 w-80 rounded-full bg-gradient-to-br from-purple-400/20 to-blue-500/20 blur-3xl"></div>
+				<div className="absolute -top-20 -left-32 h-60 w-60 rounded-full bg-gradient-to-br from-pink-400/20 to-purple-500/20 blur-3xl"></div>
+				</div>
+				
+				{/* Badge */}
+				<div className="mb-6 inline-flex items-center rounded-full bg-gradient-to-r from-purple-100 to-blue-100 px-4 py-2 text-sm font-medium text-purple-700 ring-1 ring-purple-200 dark:from-purple-900/30 dark:to-blue-900/30 dark:text-purple-300 dark:ring-purple-800">
+				<svg className="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+				<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+				</svg>
+				AI-Powered Learning
+				</div>
+				
+				{/* Main heading */}
+				<h1 className="mb-6 text-4xl font-bold tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+				<span > Companion</span>
+				<span className="relative inline-block">
+				<span className="bg-gradient-to-r from-[#845fff] via-purple-600 to-blue-600 bg-clip-text text-transparent">
+				Library
+				</span>
+				{/* Underline decoration */}
+				<div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#845fff] via-purple-600 to-blue-600 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+				</span>
+				</h1>
+				
+				{/* Description */}
+				<p className="mx-auto max-w-3xl text-xl leading-relaxed text-gray-600 dark:text-gray-300 mb-8">
+				Discover AI companions to help you learn new subjects and skills at your own pace. 
+				<span className="block mt-2 text-lg text-gray-500 dark:text-gray-400">
+				Personalized learning experiences powered by advanced AI technology.
+				</span>
+				</p>
+				
+				{/* Stats or features */}
+				<div className="flex flex-wrap justify-center gap-6 text-sm text-gray-500 dark:text-gray-400">
+				<div className="flex items-center">
+				<div className="mr-2 h-2 w-2 rounded-full bg-green-500"></div>
+				<span>Interactive Learning</span>
+				</div>
+				<div className="flex items-center">
+				<div className="mr-2 h-2 w-2 rounded-full bg-blue-500"></div>
+				<span>Personalized Pace</span>
+				</div>
+				<div className="flex items-center">
+				<div className="mr-2 h-2 w-2 rounded-full bg-purple-500"></div>
+				<span>AI-Powered</span>
+				</div>
+				</div>
 				</div>
 
 				{/* Filters section */}
