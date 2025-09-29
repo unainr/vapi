@@ -3,6 +3,7 @@
 import { getSubjectColor } from "@/lib/utils";
 import Link from "next/link";
 import React from "react";
+import { Badge } from "./ui/badge";
 
 interface CompanionListProps {
   id?: string;
@@ -31,12 +32,12 @@ const CompanionList = ({
           {/* Left: Avatar and Info */}
           <div className="flex items-center gap-4">
             {/* Avatar */}
-            <div
+            <Badge
               className="w-14 h-14 flex items-center justify-center rounded-full font-semibold text-lg text-white shadow-md ring-2 ring-muted/20"
               style={{ backgroundColor: bgColor }}
             >
               {name?.charAt(0).toUpperCase() || "?"}
-            </div>
+            </Badge>
 
             {/* Name and teaching subject */}
             <div className="flex flex-col">
