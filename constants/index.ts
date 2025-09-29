@@ -14,7 +14,17 @@ export const subjectOptions = [
   { label: "Physics", value: "Physics" },
   { label: "Chemistry", value: "Chemistry" },
   { label: "Biology", value: "Biology" },
+  { label: "Economics", value: "Economics" },
+  { label: "Business Studies", value: "Business" },
+  { label: "Political Science", value: "PoliticalScience" },
+  { label: "Psychology", value: "Psychology" },
+  { label: "Philosophy", value: "Philosophy" },
+  { label: "Art", value: "Art" },
+  { label: "Health", value: "Health" },
+  { label: "Computer Science", value: "ComputerScience" },
+  { label: "Environmental Studies", value: "EnvironmentalStudies" },
 ];
+
 
 export const speakingStyleOptions = [
   { label: "formal", value: "formal" },
@@ -33,6 +43,14 @@ export const subjectsColors = {
   Chemistry: "#D7FFE5",
   Biology: "#D7FFE5",
   English: "#D7FFE5",
+   Business: "#F6C8FF",         
+  PoliticalScience: "#FFC8C8", 
+  Psychology: "#C8FFF0",       
+  Philosophy: "#C8E3FF",       
+  Art: "#FFD6C8",              
+  Health: "#C8FFD1",          
+  ComputerScience: "#F6FFC8",  
+  EnvironmentalStudies: "#E7C8FF" 
 };
 
 
