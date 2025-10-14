@@ -1,10 +1,14 @@
 import CompanionCard from "@/components/home/module/ui/CompanionCard";
 import SearchInput from "@/components/home/module/ui/SearchInput";
 import SubjectFilter from "@/components/home/module/ui/SubjectFilter";
+import Pagination from "@/components/pagination";
+import { Button } from "@/components/ui/button";
 import { fetchLearningPartner } from "@/lib/actions/create.learning";
 import { getSubjectColor } from "@/lib/utils";
 import { SearchParams } from "@/types";
+import { Home } from "lucide-react";
 import { Metadata } from "next";
+import Link from "next/link";
 import React from "react";
 
 const Learning = async ({ searchParams }: SearchParams) => {
@@ -13,7 +17,11 @@ const Learning = async ({ searchParams }: SearchParams) => {
 	const teaching_subject = filters.teaching_subject
 		? filters.teaching_subject
 		: "";
-	const companions = await fetchLearningPartner({ subject, teaching_subject });
+		const page = filters.page ? parseInt(filters.page as string) : 1; // Add page parameter
+	const limit = 8; // Items per page
+	const companions = await fetchLearningPartner({ subject, teaching_subject,page,limit });
+	// Add these lines right here 👇
+	const hasLessItemsThanLimit = companions.length < limit;
 	return (
 		<main className="container mx-auto px-4 py-8  my-20">
 			<section className="flex flex-col">
@@ -115,9 +123,24 @@ const Learning = async ({ searchParams }: SearchParams) => {
 								Try adjusting your search or filter to find what you're looking
 								for.
 							</p>
+							<Link href={'/'}>
+							<Button variant={'default'} size={'sm'} className="my-2">
+								<Home/>
+								Back To Home
+							</Button>
+							</Link>
 						</div>
 					)}
+
 				</section>
+					{/* Pagination - Only show if there are results */}
+				{companions.length > 0 && (
+					<Pagination 
+						currentPage={page} 
+					    totalItems={page * limit + limit} 
+						itemsPerPage={limit} 
+					/>
+				)}
 			</section>
 		</main>
 	);
